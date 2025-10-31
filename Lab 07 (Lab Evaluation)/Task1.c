@@ -13,6 +13,10 @@
   Prints the student information with the calculated grade
 4.  Main thread waits for all threads to complete */
 
+// Dawood Saif
+// 23-NTU-CS-1145
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,7 +51,7 @@ void* calculate_grade(void* arg) {
         // here we are print
     printf("Student ID: %d\n", student->student_id);
     printf("Student Name: %s\n", student->student_name);
-    printf("Marks: %f\n", student->marks);
+    printf("Marks: %.2f\n", student->marks);
     printf("Grade: %c\n", student->grade);
 
     return NULL;
