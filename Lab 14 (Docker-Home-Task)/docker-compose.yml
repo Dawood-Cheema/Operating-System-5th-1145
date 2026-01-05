@@ -1,0 +1,40 @@
+version: "3.9"
+
+networks:
+  frontend_net:
+  backend_net:
+
+volumes:
+  db_data:
+
+services:
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - frontend_net
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - frontend_net
+      - backend_net
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+      POSTGRES_DB: demo_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - backend_net
